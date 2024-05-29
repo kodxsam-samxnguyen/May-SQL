@@ -13,3 +13,7 @@ SELECT  name FROM Customer
 WHERE  referee_id != 2
 OR referee_id IS NULL
 
+--EX12
+SELECT DISTINCT author_id AS id FROM Views
+WHERE author_id = viewer_id
+ORDER BY id
