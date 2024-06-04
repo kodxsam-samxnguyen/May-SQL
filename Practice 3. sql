@@ -25,3 +25,19 @@ ROUND(AVG(stars),2) AS avg_stars
 FROM reviews
 GROUP BY mth,product_id
 ORDER BY mth,product_id
+
+--EX5
+SELECT sender_id,
+COUNT(message_id) AS message_count
+FROM messages
+WHERE EXTRACT(month FROM sent_date)=8 AND EXTRACT(year FROM sent_date)=2022
+GROUP BY sender_id
+ORDER BY message_count DESC
+LIMIT 2
+
+--EX6
+SELECT tweet_id FROM Tweets
+WHERE length(content) > 15
+
+--EX7
+
