@@ -2,3 +2,26 @@
 SELECT Name from STUDENTS
 WHERE Marks > 75
 ORDER BY RIGHT  (Name, 3), ID
+
+-- EX 2
+SELECT user_id,
+CONCAT(UPPER(LEFT(name,1)), LOWER(RIGHT(name, length(name)-1))) AS name
+FROM Users
+ORDER BY user_id  
+
+--EX3 
+SELECT 
+manufacturer,
+'$' ||ROUND(SUM(total_sales)/1000000,0)|| ' ' || 'million' as sale
+FROM pharmacy_sales
+GROUP BY manufacturer
+ORDER BY SUM(total_sales) DESC
+
+--EX4
+SELECT
+EXTRACT(month from submit_date) AS mth,
+product_id,
+ROUND(AVG(stars),2) AS avg_stars
+FROM reviews
+GROUP BY mth,product_id
+ORDER BY mth,product_id
