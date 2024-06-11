@@ -33,5 +33,27 @@ ON a.product_id = b.product_id
 GROUP BY customer_id
 HAVING COUNT(DISTINCT b.product_category) = 3;
 
+--EX5
+SELECT a.employee_id,
+        a.name,
+        COUNT(b.reports_to) AS reports_count,
+        ROUND(AVG(b.age)) AS average_age
+FROM  Employees AS a
+LEFT JOIN Employees AS B
+ON a.employee_id = b.reports_to
+WHERE b.reports_to IS  NOT NULL
+GROUP BY b.reports_to
+ORDER BY a.employee_id;
+
+--EX6
+SELECT a.product_name,
+SUM(b.unit) AS unit
+FROM Products AS a
+INNER JOIN Orders AS b
+ON a.product_id = b.product_id 
+WHERE month (order_date) = 2 AND year(order_date)=2020
+GROUP BY a.product_name
+HAVING unit >= 100;
+
 
 
