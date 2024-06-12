@@ -55,5 +55,32 @@ WHERE month (order_date) = 2 AND year(order_date)=2020
 GROUP BY a.product_name
 HAVING unit >= 100;
 
+-- MID TEST-- 
+-- QUESTION 1
+SELECT DISTINCT replacement_cost FROM film
+ORDER BY replacement_cost;
+
+-- QUESTION 2
+SELECT  
+CASE 
+	WHEN replacement_cost BETWEEN 9.99 AND 19.99 THEN 'low'
+	WHEN replacement_cost BETWEEN 20.00 AND 24.99 THEN 'medium'
+	ELSE 'high' 
+END  category,
+COUNT ('low') AS unit
+FROM film
+GROUP BY category;
+
+-- QUESTION3
+SELECT a.film_id, a.title, a.length, d.name
+FROM film as a
+INNER JOIN film_category AS b ON a.film_id = b.film_id
+INNER JOIN category AS d ON b.category_id = d.category_id
+WHERE d.name='Drama' OR d.name='Sports'
+GROUP BY  a.film_id, a.title, a.length, d.name
+ORDER BY (a.length) DESC;
+
+-- QUESTION 4
+
 
 
